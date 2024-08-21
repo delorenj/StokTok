@@ -13,7 +13,7 @@ from casestudy.models import Security
 # Create an and admin class for each model you want to be able to access in the Django admin, and register it with
 # the admin.site.register() decorator.
 @admin.register(Security)
-class EmailAdmin(admin.ModelAdmin):
+class SecurityAdmin(admin.ModelAdmin):
 
     # Fields in the list_display list will appear in the Django admin list view.
     # https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display
@@ -21,6 +21,9 @@ class EmailAdmin(admin.ModelAdmin):
         'ticker',
         'name',
         'last_price',
+        'currency',
+        'exchange',
+        'last_updated',
     ]
 
 

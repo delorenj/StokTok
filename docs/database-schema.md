@@ -4,6 +4,26 @@
 
 This document outlines the database schema for the StokTok API. The schema is designed to support a scalable, real-time stock watchlist system capable of handling the millions of users it will surely have.
 
+## Design Considerations
+
+1. **Scalability**
+2. **Performance**
+3. **Data Integrity**
+4. **Flexibility**
+5. **Real-time Updates**
+
+## Key Design Decisions
+
+- I'm using `CharField` instead of `TextField` for fixed-length fields to optimize database performance.
+- The `ticker` field in the `Security` model is set as unique to prevent duplicates.
+- I've added `currency` and `exchange` fields to the `Security` model for more comprehensive stock information.
+- I've added `last_updated` field to the `Security` model to facilitate efficient price updates.
+- The `Watchlist` model allows users to have multiple named watchlists.
+- The `WatchlistItem` model represents the many-to-many relationship between Watchlist and Security, allowing for efficient querying.
+- I've added appropriate indexes to optimize common query patterns.
+- `unique_together` constraints prevent duplicate entries in watchlists.
+
+
 ## Entity Relationship Diagram
 
 ```mermaid
@@ -119,15 +139,3 @@ Indexes:
 Constraints:
 
 - UNIQUE (`watchlist_id`, `security_id`)
-
-## Design Considerations
-
-1. **Scalability**: The schema is designed to handle millions of users, each with multiple watchlists.
-2. **Performance**:
-   - Appropriate indexes are added to optimize common query patterns.
-   - `CharField` is used instead of `TextField` for fixed-length fields to improve database performance.
-3. **Data Integrity**:
-   - Unique constraints prevent duplicate entries in watchlists and securities.
-   - Foreign key constraints ensure referential integrity.
-4. **Flexibility**: The design allows users to have multiple named watchlists.
-5. **Real-time Updates**: The `last_updated` field in the Security table facilitates efficient price updates without affecting the watchlist structure.

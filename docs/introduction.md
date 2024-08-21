@@ -20,8 +20,6 @@ layout:
 
 # Introduction
 
-## Introduction
-
 ## 🚀 StockTok 📈
 
 Hey Albert team! 👋 Here is my take on a trendy real-time securities watchlist? 🧦💨
