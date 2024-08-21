@@ -7,6 +7,8 @@ WORKDIR /app
 
 COPY requirements.txt /app/
 
-RUN pip install -r requirements.txt
+RUN apk add --no-cache ca-certificates && \
+    update-ca-certificates && \
+    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 COPY . /app/

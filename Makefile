@@ -1,6 +1,8 @@
 .DEFAULT_GOAL := help
-.PHONY: help dev
+.PHONY: help dev init up sh sh-app psql build build-no-cache createsuperuser createusers migrate open-admin open-app submit
 
+init: build migrate createsuperuser createusers ## Initialize everything and bring up the containers
+	docker compose up -d
 
 up: ## Run all the services, web (Django), Celery, RabbitMQ, Postgres, Redis
 	docker compose up
@@ -38,7 +40,6 @@ createusers: ## Create 2 standard users username=user1 and username=user2
 		run \
 		web \
 		python manage.py shell --command "from django.contrib.auth.models import User; User.objects.create_superuser(username='user2', email='user2@casestudy.com', password='password')"
-
 
 migrate: ## Create and apply database migrations
 	docker compose run web python manage.py makemigrations
