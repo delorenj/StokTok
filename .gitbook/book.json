@@ -1,0 +1,10 @@
+{
+    "root": "../",
+    "title": "StokTok",
+    "description": "Documentation for the StokTok service and client application",
+    "author": "Jarad DeLorenzo",
+    "language": "en",
+    "structure": {
+      "readme": "OVERVIEW.md"
+    }
+  }
